@@ -1,4 +1,4 @@
-
+$(document).ready(function() { 
 
 
   // Your web app's Firebase configuration
@@ -138,7 +138,7 @@ database.ref().on("child_added", function(childSnapshot) {
   // Append the new row to the table
   $("#train-table > tbody").append(newRow);
 });
-
+})
 
 
   
