@@ -89,25 +89,50 @@ database.ref().on("child_added", function(childSnapshot) {
   console.log(trainFrequency);
 
   // Prettify the employee start
-  var firstTrainTimePretty = moment.unix(firstTrainTime).format("HH:mm");
+  var firstTrainTimePretty = moment.unix(firstTrainTime).format("hh:mm a");
+
+ var trainFrequency;
+ var firstTrainTime = 0;
+
+  var firstTrainTimeConverted = moment(firstTrainTime, "hh:mm a").subtract(1, "years");
+
+  var currentTime = moment();
+  console.log("current time: " + moment(currentTime).format("HH:mm"));
+
+  // find the diff between the times
+  var diff = moment().diff(moment(firstTrainTimeConverted), "minutes");
+  console.log("diff in time: " + diff);
+
+  // find the time apart 
+  var left = diff % trainFrequency;
+
+  // mins til train
+  var timeLeft = trainFrequency - left;
+  console.log("minutes til train: " + timeLeft);
+
+  // next train
+  var minsLeft = moment().add(timeLeft, "minutes").format("hh:mm");
+  console.log("arrival time: " + moment(minsLeft));
+
+  
 
   // Calculate the months worked using hardcore math
   // To calculate the months worked
-    // var empMonths = moment().diff(moment(empStart, "X"), "months");
-    // console.log(empMonths);
+    // var minsAway = moment().diff(moment(firstTrainTime, "X"), "minutes");
+    // console.log(firstTrainTime);
 
-    // // Calculate the total billed rate
-    // var empBilled = empMonths * empRate;
-    // console.log(empBilled);
+    // // // Calculate the total billed rate
+    // var totalMinsAway = firstTrainTime * trainFrequency;
+    // console.log(totalMinsAway);
 
   // Create the new row
   var newRow = $("<tr>").append(
     $("<td>").text(trainName),
     $("<td>").text(trainDestination),
-    $("<td>").text(firstTrainTimePretty),
     $("<td>").text(trainFrequency),
+    $("<td>").text(minsLeft),
     // $("<td>").text(empRate),
-    // $("<td>").text(empBilled)
+    $("<td>").text(timeLeft),
   );
 
   // Append the new row to the table
