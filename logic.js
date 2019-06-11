@@ -24,7 +24,15 @@
   firebase.initializeApp(firebaseConfig);
 
   var database = firebase.database();
+  
+  var tMinutesTilTrain = 0;
 
+  function displayRealTime() {
+  setInterval(function(){
+    $("#current-time").html(moment().format("hh:mm:ss a"))
+  }, 1000);
+  }
+  displayRealTime();
   // var tableRow = "";
   // var getKey = "";
 
@@ -34,7 +42,7 @@
       var trainName = $("#train-name-input").val().trim();
       var trainDestination = $("#destination-input").val().trim();
       // var empStart = moment($("#start-input").val().trim(), "MM/DD/YYYY").format("X");
-      var firstTrainTime = moment($("#firstTrainTime-input").val().trim(), "h:mm:ss a").format("X");
+      var firstTrainTime = moment($("#firstTrainTime-input").val().trim(), "hh:mm:ss a").format("X");
       var trainFrequency = $("#frequency-input").val().trim();
 
   
