@@ -33,7 +33,8 @@
 
       var trainName = $("#train-name-input").val().trim();
       var trainDestination = $("#destination-input").val().trim();
-      var firstTrainTime = $("#firstTrainTime-input").val().trim();
+      // var empStart = moment($("#start-input").val().trim(), "MM/DD/YYYY").format("X");
+      var firstTrainTime = moment($("#firstTrainTime-input").val().trim(), "h:mm:ss a").format("X");
       var trainFrequency = $("#frequency-input").val().trim();
 
   
