@@ -122,7 +122,7 @@ database.ref().on("child_added", function(childSnapshot) {
     // console.log(firstTrainTime);
 
     // // // Calculate the total billed rate
-    // var totalMinsAway = firstTrainTime * trainFrequency;
+    // var totalMinsAway = firstTrainTime - trainFrequency;
     // console.log(totalMinsAway);
 
   // Create the new row
